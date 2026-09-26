@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Field Notes — a blog</title>
+<meta name="description" content="A blogging platform with accounts, posts, and comments." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== Auth screen ===== -->
+<section id="auth-screen" class="auth-screen">
+  <div class="auth-card">
+    <p class="brand">Field Notes</p>
+    <h1 id="auth-title">Welcome back</h1>
+
+    <form id="login-form" class="auth-form">
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required autocomplete="current-password" />
+      </div>
+      <p class="auth-error" id="login-error" role="alert"></p>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </form>
+
+    <form id="register-form" class="auth-form hidden">
+      <div class="field">
+        <label for="register-name">Name</label>
+        <input type="text" id="register-name" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="register-email">Email</label>
+        <input type="email" id="register-email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="register-password">Password</label>
+        <input type="password" id="register-password" required minlength="8" autocomplete="new-password" />
+        <span class="hint">At least 8 characters</span>
+      </div>
+      <p class="auth-error" id="register-error" role="alert"></p>
+      <button type="submit" class="btn btn-primary btn-block">Create account</button>
+    </form>
+
+    <button id="auth-toggle" class="link-btn">Need an account? Sign up</button>
+    <button id="browse-btn" class="link-btn browse-btn">Browse posts without an account</button>
+    <p class="hint demo-hint">Demo login: writer@example.com / writer12345</p>
+  </div>
+</section>
+
+<!-- ===== App shell ===== -->
+<div id="app-screen" class="app-screen hidden">
+
+  <header class="topbar">
+    <a href="#" class="brand" id="home-link">Field Notes</a>
+    <div class="topbar-right" id="topbar-guest">
+      <button id="show-login-btn" class="link-btn">Log in</button>
+    </div>
+    <div class="topbar-right hidden" id="topbar-user">
+      <button id="new-post-btn" class="btn btn-primary">Write</button>
+      <span id="user-name" class="user-name"></span>
+      <button id="logout-btn" class="link-btn">Log out</button>
+    </div>
+  </header>
+
+  <!-- ---- Feed view ---- -->
+  <main id="view-feed" class="view">
+    <div id="post-feed" class="post-feed">
+      <p class="loading">Loading posts…</p>
+    </div>
+  </main>
+
+  <!-- ---- Post detail view ---- -->
+  <main id="view-post" class="view hidden">
+    <button id="back-to-feed-btn" class="link-btn back-link">← All posts</button>
+    <article id="post-detail"></article>
+
+    <section class="comments-section">
+      <h2 id="comments-heading">Comments</h2>
+      <div id="comments-list" class="comments-list"></div>
+
+      <form id="comment-form" class="comment-form hidden">
+        <textarea id="comment-content" rows="3" placeholder="Add a comment…" required></textarea>
+        <button type="submit" class="btn btn-primary">Post comment</button>
+      </form>
+      <p id="comment-login-hint" class="hint hidden">
+        <button id="comment-login-btn" class="link-btn">Log in</button> to leave a comment.
+      </p>
+    </section>
+  </main>
+
+  <!-- ---- Post editor view ---- -->
+  <main id="view-editor" class="view hidden">
+    <h1 id="editor-heading">New post</h1>
+    <form id="post-form" class="post-form">
+      <input type="hidden" id="post-id" />
+      <div class="field">
+        <label for="post-title">Title</label>
+        <input type="text" id="post-title" required />
+      </div>
+      <div class="field">
+        <label for="post-content">Content</label>
+        <textarea id="post-content" rows="14" required></textarea>
+      </div>
+      <div class="editor-actions">
+        <button type="button" id="delete-post-btn" class="btn btn-danger hidden">Delete post</button>
+        <div class="editor-actions-right">
+          <button type="button" id="cancel-post-btn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
